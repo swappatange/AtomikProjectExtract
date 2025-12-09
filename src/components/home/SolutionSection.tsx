@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Smartphone, Package, Building2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import solutionBg from "@assets/stock_images/green_farm_field_cro_272a7c84.jpg";
 
 const pillars = [
   {
@@ -25,8 +26,14 @@ const pillars = [
 
 export function SolutionSection() {
   return (
-    <section className="py-24 gradient-section">
-      <div className="container">
+    <section className="py-24 relative overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-10"
+        style={{ backgroundImage: `url(${solutionBg})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/50 to-background" />
+      
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">
             Our Solution
@@ -46,7 +53,6 @@ export function SolutionSection() {
               className="group relative"
             >
               <div className="relative bg-card rounded-2xl p-8 border border-border shadow-soft hover:shadow-medium transition-all duration-300 h-full">
-                {/* Number badge */}
                 <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-lg">
                   {index + 1}
                 </div>

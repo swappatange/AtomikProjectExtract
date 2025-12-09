@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroBackground from "@assets/stock_images/drone_spraying_crops_a1a16155.jpg";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden gradient-hero">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/60" />
 
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto lg:mx-0">
-          {/* Content */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-full px-4 py-2 mb-6">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -36,7 +41,6 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
