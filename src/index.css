@@ -1,0 +1,203 @@
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core brand colors - Forest Green & Sky Blue */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    /* Primary - Forest Green */
+    --primary: 152 45% 28%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 152 35% 45%;
+    --primary-dark: 152 50% 18%;
+
+    /* Secondary - Sky Blue */
+    --secondary: 200 85% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 200 85% 65%;
+
+    /* Accent - Warm Amber */
+    --accent: 38 92% 50%;
+    --accent-foreground: 220 20% 10%;
+    --accent-light: 38 90% 65%;
+
+    --muted: 150 10% 96%;
+    --muted-foreground: 220 10% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 88%;
+    --input: 150 15% 88%;
+    --ring: 152 45% 28%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(152 45% 28%) 0%, hsl(152 50% 18%) 50%, hsl(200 85% 30%) 100%);
+    --gradient-hero-overlay: linear-gradient(180deg, hsla(152, 45%, 28%, 0.95) 0%, hsla(152, 50%, 18%, 0.9) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(38 90% 65%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(200 85% 95%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(150 10% 96%) 0%, hsl(0 0% 100%) 100%);
+    
+    --shadow-soft: 0 4px 20px hsla(220, 20%, 10%, 0.08);
+    --shadow-medium: 0 8px 30px hsla(220, 20%, 10%, 0.12);
+    --shadow-strong: 0 12px 40px hsla(220, 20%, 10%, 0.18);
+    --shadow-glow: 0 0 40px hsla(152, 45%, 28%, 0.3);
+    --shadow-accent: 0 8px 30px hsla(38, 92%, 50%, 0.35);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 152 45% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 152 40% 55%;
+    --primary-dark: 152 45% 35%;
+
+    --secondary: 200 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 38 90% 55%;
+    --accent-foreground: 220 20% 10%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 65%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 152 45% 45%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(152 45% 20%) 0%, hsl(152 50% 12%) 50%, hsl(200 85% 20%) 100%);
+    --gradient-hero-overlay: linear-gradient(180deg, hsla(152, 45%, 15%, 0.95) 0%, hsla(152, 50%, 10%, 0.9) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-hero-overlay {
+    background: var(--gradient-hero-overlay);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-sky {
+    background: var(--gradient-sky);
+  }
+
+  .gradient-section {
+    background: var(--gradient-section);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
