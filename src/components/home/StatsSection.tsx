@@ -1,68 +1,74 @@
-import { Droplets, Leaf, Shield, Users, Zap } from "lucide-react";
+import { Zap, Target, ShieldCheck, Droplets, Database } from "lucide-react";
 
-const stats = [
+const features = [
   {
     icon: Zap,
-    value: "2,450",
-    unit: "acres",
-    label: "Sprayed Today",
+    title: "Faster Coverage",
+    description: "Drones spray 20-30 times faster than manual labor, covering 25-30 acres per day versus only 1-2 acres manually.",
+    highlight: "20-30 times faster",
   },
   {
-    icon: Users,
-    value: "127",
-    unit: "pilots",
-    label: "Active Pilots",
+    icon: Target,
+    title: "Precision & Uniformity",
+    description: "Ensures even spray distribution with minimal overlap or wastage, optimizing pest control and input efficiency.",
   },
   {
-    icon: Users,
-    value: "3,200+",
-    unit: "farmers",
-    label: "Farmers Served",
+    icon: ShieldCheck,
+    title: "Farmer Safety",
+    description: "Keeps farmers away from harmful agrochemicals, dramatically reducing health risks and exposure-related illnesses.",
   },
   {
-    icon: Shield,
-    value: "Zero",
-    unit: "exposure",
-    label: "Chemical exposure to farmers",
+    icon: Droplets,
+    title: "Resource Efficiency",
+    description: "Uses 90% less water and 30-40% less pesticides, making it cost-effective and eco-friendly.",
+    highlight: "90% less water",
+  },
+  {
+    icon: Database,
+    title: "Data Integration",
+    description: "Captures real-time field data for crop health monitoring, enabling precision agriculture and smarter decision-making.",
   },
 ];
 
 export function StatsSection() {
   return (
-    <section className="py-20 bg-muted">
+    <section className="py-20 bg-[#e8f5f0]">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Trust & Impact at Scale
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Real results powering modern agriculture across India
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.slice(0, 3).map((feature) => (
+            <FeatureCard key={feature.title} feature={feature} />
+          ))}
         </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="group relative bg-card rounded-2xl p-6 shadow-soft hover:shadow-medium transition-all duration-300 border border-border/50"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <stat.icon className="w-6 h-6 text-primary" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</span>
-                  {stat.unit && (
-                    <span className="text-sm text-muted-foreground">{stat.unit}</span>
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
+          {features.slice(3).map((feature) => (
+            <FeatureCard key={feature.title} feature={feature} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function FeatureCard({ feature }: { feature: typeof features[0] }) {
+  return (
+    <div className="bg-[#e0f2eb] rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
+      <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-4">
+        <feature.icon className="w-6 h-6 text-white" />
+      </div>
+      <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        {feature.highlight ? (
+          <>
+            {feature.description.split(feature.highlight)[0]}
+            <span className="bg-accent text-accent-foreground px-1 rounded font-medium">
+              {feature.highlight}
+            </span>
+            {feature.description.split(feature.highlight)[1]}
+          </>
+        ) : (
+          feature.description
+        )}
+      </p>
+    </div>
   );
 }
