@@ -23,7 +23,7 @@ export function HeroSection() {
       </div>
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-3xl mx-auto lg:mx-0">
           {/* Content */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-full px-4 py-2 mb-6">
@@ -53,20 +53,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Visual */}
-          <div className="relative hidden lg:block">
-            <div className="relative">
-              {/* Drone illustration placeholder - geometric shape */}
-              <div className="relative w-full aspect-square max-w-lg mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 to-accent/20 rounded-3xl rotate-6 blur-xl" />
-                <div className="relative bg-primary-foreground/10 backdrop-blur-xl rounded-3xl border border-primary-foreground/20 p-8 transform hover:scale-[1.02] transition-transform duration-500">
-                  <div className="space-y-6">
-                    {/* Drone illustration or other content can go here */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
