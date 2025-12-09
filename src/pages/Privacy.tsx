@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
-import { Shield, Lock, Eye, Database, FileText, Mail } from "lucide-react";
+import { Shield, Lock, Eye, Database, FileText, Mail, UserCheck, Clock, Users, RefreshCw } from "lucide-react";
 
 export default function Privacy() {
   return (
@@ -13,14 +13,11 @@ export default function Privacy() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-              Legal
-            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
               Privacy Policy
             </h1>
-            <p className="text-lg text-primary-foreground/80">
-              Last updated: December 2024
+            <p className="text-lg md:text-xl text-primary-foreground/80">
+              Your privacy is important to us. Learn how we protect your data.
             </p>
           </motion.div>
         </div>
@@ -123,14 +120,20 @@ export default function Privacy() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">Data Security</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-primary" />
+                  Data Security
+                </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">Your Rights</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
+                  <UserCheck className="w-6 h-6 text-primary" />
+                  Your Rights
+                </h2>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   You have the right to:
                 </p>
@@ -145,21 +148,30 @@ export default function Privacy() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">Data Retention</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
+                  <Clock className="w-6 h-6 text-primary" />
+                  Data Retention
+                </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">Children's Privacy</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
+                  <Users className="w-6 h-6 text-primary" />
+                  Children's Privacy
+                </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">Changes to This Policy</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
+                  <RefreshCw className="w-6 h-6 text-primary" />
+                  Changes to This Policy
+                </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
                 </p>
