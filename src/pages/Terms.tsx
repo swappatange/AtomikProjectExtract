@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, FileText } from "lucide-react";
 
 export default function Terms() {
   return (
@@ -16,9 +16,15 @@ export default function Terms() {
             <div className="w-16 h-16 rounded-2xl bg-primary-foreground/10 flex items-center justify-center mx-auto mb-6">
               <FileText className="w-8 h-8 text-primary-foreground" />
             </div>
+            <span className="inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4">
+              Legal
+            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
               Terms & Conditions
             </h1>
+            <p className="text-lg text-primary-foreground/80">
+              Last updated: December 2024
+            </p>
           </motion.div>
         </div>
       </section>
