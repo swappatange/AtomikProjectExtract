@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBackground from "@assets/stock_images/drone_spraying_crops_a1a16155.jpg";
+import droneImage from "@assets/generated_images/hexacopter_agricultural_spray_drone.png";
 
 export function HeroSection() {
   return (
@@ -11,6 +12,15 @@ export function HeroSection() {
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/60" />
+      
+      {/* Drone Image Overlay */}
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/3 h-full flex items-center justify-end pointer-events-none opacity-80 z-5">
+        <img 
+          src={droneImage} 
+          alt="Agricultural hexacopter drone" 
+          className="h-full w-auto object-contain drop-shadow-lg"
+        />
+      </div>
 
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto lg:mx-0">
