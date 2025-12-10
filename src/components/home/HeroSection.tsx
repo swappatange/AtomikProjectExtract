@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBackground from "@assets/stock_images/drone_spraying_crops_27765e9b.jpg";
+import heroBackground from "@assets/360_F_614730290_naJBsq5JxCxfAYyiLC2NojQ44ra0lnNl_1765351212896.jpg";
 
 export function HeroSection() {
   return (
