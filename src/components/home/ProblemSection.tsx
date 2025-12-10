@@ -1,5 +1,5 @@
 import { AlertTriangle, Clock, IndianRupee, Frown, Search, Calendar, CreditCard, ChevronRight } from "lucide-react";
-import farmerImage from "@assets/stock_images/male_indian_farmer_m_cf72aa98.jpg";
+import farmerImage from "@assets/ChatGPT_Image_Dec_10,_2025,_01_58_13_PM_1765355329174.png";
 import pilotImage from "@assets/96079005-046d-40a1-9171-b42df33350ad_(1)_1765355138989.avif";
 
 const farmerProblems = [
