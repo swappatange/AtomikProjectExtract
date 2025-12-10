@@ -33,7 +33,7 @@ export function ProblemSection() {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
             <div 
-              className="h-56 bg-cover bg-center"
+              className="h-64 bg-cover bg-center"
               style={{ backgroundImage: `url(${farmerImage})` }}
             />
             <div className="p-8">
@@ -62,8 +62,8 @@ export function ProblemSection() {
 
           <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
             <div 
-              className="h-56 bg-cover bg-center"
-              style={{ backgroundImage: `url(${pilotImage})` }}
+              className="h-64 bg-cover"
+              style={{ backgroundImage: `url(${pilotImage})`, backgroundPosition: 'center 20%' }}
             />
             <div className="p-8">
               <div className="flex items-center gap-3 mb-6">
