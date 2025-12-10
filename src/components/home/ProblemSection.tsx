@@ -1,6 +1,6 @@
 import { AlertTriangle, Clock, IndianRupee, Frown, Search, Calendar, CreditCard, ChevronRight } from "lucide-react";
 import farmerImage from "@assets/ChatGPT_Image_Dec_10,_2025,_01_58_13_PM_1765355329174.png";
-import pilotImage from "@assets/96079005-046d-40a1-9171-b42df33350ad_(1)_1765355387734.avif";
+import pilotImage from "@assets/stock_images/drone_pilot_operator_7000c88d.jpg";
 
 const farmerProblems = [
   { icon: Clock, text: "Slow & inefficient manual spraying" },
