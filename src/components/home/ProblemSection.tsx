@@ -1,5 +1,5 @@
 import { AlertTriangle, Clock, DollarSign, Frown, Search, Calendar, CreditCard } from "lucide-react";
-import farmerImage from "@assets/stock_images/farmer_using_technol_bde57944.jpg";
+import farmerImage from "@assets/stock_images/indian_farmer_in_gre_3ef6eaec.jpg";
 import pilotImage from "@assets/stock_images/drone_spraying_crops_305132bb.jpg";
 
 const farmerProblems = [
