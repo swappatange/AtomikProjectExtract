@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBackground from "@assets/ChatGPT_Image_Dec_10,_2025,_12_57_56_PM_1765351702195.png";
+import heroBackground from "@/assets/images/hero-background.png";
 
 export function HeroSection() {
   return (

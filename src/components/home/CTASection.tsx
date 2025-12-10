@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ctaBackground from "@assets/stock_images/drone_spraying_crops_555b8399.jpg";
+import ctaBackground from "@/assets/images/cta-background.jpg";
 
 export function CTASection() {
   return (

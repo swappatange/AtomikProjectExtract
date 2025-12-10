@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Rocket, Network, ShieldCheck, Database, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import whyAtomikImage from "@assets/stock_images/drone_spraying_crops_f5c91082.jpg";
+import whyAtomikImage from "@/assets/images/why-atomik.jpg";
 
 const differentiators = [
   {

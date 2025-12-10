@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Smartphone, Package, Building2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import solutionBg from "@assets/stock_images/green_farm_field_cro_272a7c84.jpg";
+import solutionBg from "@/assets/images/solution-bg.jpg";
 
 const pillars = [
   {
