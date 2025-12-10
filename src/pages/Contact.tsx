@@ -103,7 +103,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/swappatange/"
+                  href="https://www.linkedin.com/company/atomik-ag/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow group"

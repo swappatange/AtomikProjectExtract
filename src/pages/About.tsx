@@ -166,7 +166,7 @@ export default function About() {
                 Building Atomik with a vision to transform agricultural operations through structured, technology-driven solutions.
               </p>
               <a
-                href="https://www.linkedin.com/in/swappatange/"
+                href="https://www.linkedin.com/company/atomik-ag/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium"
