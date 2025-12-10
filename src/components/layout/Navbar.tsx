@@ -8,12 +8,12 @@ import atomikLogo from "@/assets/atomik-logo.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
   { name: "Solutions", path: "/solutions" },
   { name: "Technology", path: "/technology" },
   { name: "Partnerships", path: "/partnerships" },
   { name: "For Pilots", path: "/pilots" },
   { name: "Investors", path: "/investors" },
+  { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
 
