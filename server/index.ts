@@ -10,6 +10,11 @@ app.get("/_health", (req, res) => {
   res.status(200).send("OK");
 });
 
+if (process.env.NODE_ENV === "production") {
+  const { serveStaticEarly } = await import("./static");
+  serveStaticEarly(app);
+}
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
