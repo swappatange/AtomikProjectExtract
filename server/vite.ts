@@ -1,7 +1,7 @@
 import { type Express } from "express";
 import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
-import viteConfig from "../vite.config";
+import viteConfigFn from "../vite.config";
 import fs from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
@@ -14,6 +14,10 @@ export async function setupVite(server: Server, app: Express) {
     hmr: { server, path: "/vite-hmr" },
     allowedHosts: true as const,
   };
+
+  const viteConfig = typeof viteConfigFn === "function" 
+    ? viteConfigFn({ mode: "development", command: "serve" })
+    : viteConfigFn;
 
   const vite = await createViteServer({
     ...viteConfig,
@@ -29,10 +33,19 @@ export async function setupVite(server: Server, app: Express) {
     appType: "custom",
   });
 
-  app.use(vite.middlewares);
+  app.use((req, res, next) => {
+    if (req.path.startsWith("/api") || req.originalUrl.startsWith("/api")) {
+      return next();
+    }
+    vite.middlewares(req, res, next);
+  });
 
   app.use("/{*splat}", async (req, res, next) => {
     const url = req.originalUrl;
+
+    if (url.startsWith("/api")) {
+      return next();
+    }
 
     try {
       const clientTemplate = path.resolve(

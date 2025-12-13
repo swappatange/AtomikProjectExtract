@@ -7,6 +7,12 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  console.log("Registering API routes...");
+  
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
+
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, phone, subject, message } = req.body;
