@@ -13,6 +13,10 @@ export async function registerRoutes(
     res.json({ status: "ok" });
   });
 
+  app.get("/_health", (req, res) => {
+    res.status(200).send("OK");
+  });
+
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, phone, subject, message } = req.body;
