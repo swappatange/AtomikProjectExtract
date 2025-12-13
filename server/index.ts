@@ -6,6 +6,10 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 
+app.get("/_health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
