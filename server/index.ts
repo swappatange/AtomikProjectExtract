@@ -2,18 +2,32 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const httpServer = createServer(app);
+
+let cachedIndexHtml: string | null = null;
+if (process.env.NODE_ENV === "production") {
+  const indexPath = path.resolve(__dirname, "..", "dist", "index.html");
+  if (fs.existsSync(indexPath)) {
+    cachedIndexHtml = fs.readFileSync(indexPath, "utf-8");
+  }
+}
+
+app.get("/", (req, res, next) => {
+  if (process.env.NODE_ENV === "production" && cachedIndexHtml) {
+    return res.status(200).type("html").send(cachedIndexHtml);
+  }
+  next();
+});
 
 app.get("/_health", (req, res) => {
   res.status(200).send("OK");
 });
-
-if (process.env.NODE_ENV === "production") {
-  const { serveStaticEarly } = await import("./static");
-  serveStaticEarly(app);
-}
 
 declare module "http" {
   interface IncomingMessage {
