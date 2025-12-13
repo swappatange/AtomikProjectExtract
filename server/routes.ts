@@ -11,14 +11,21 @@ export async function registerRoutes(
     try {
       const { name, email, phone, subject, message } = req.body;
 
+      console.log("Contact form submission received:", { name, email, subject });
+
       if (!name || !email || !subject || !message) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
+      if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+        console.error("SMTP credentials not configured");
+        return res.status(500).json({ error: "Email service not configured" });
+      }
+
+      console.log("Using SMTP_USER:", process.env.SMTP_USER);
+
       const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.gmail.com",
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: false,
+        service: "gmail",
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -26,7 +33,7 @@ export async function registerRoutes(
       });
 
       const mailOptions = {
-        from: process.env.SMTP_USER,
+        from: `"Atomik Contact Form" <${process.env.SMTP_USER}>`,
         to: "swapnil@atomik.in",
         replyTo: email,
         subject: `[Atomik Contact] ${subject}`,
@@ -42,11 +49,13 @@ export async function registerRoutes(
         `,
       };
 
-      await transporter.sendMail(mailOptions);
+      console.log("Sending email to swapnil@atomik.in...");
+      const info = await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully:", info.messageId);
       res.json({ success: true, message: "Email sent successfully" });
-    } catch (error) {
-      console.error("Email error:", error);
-      res.status(500).json({ error: "Failed to send email" });
+    } catch (error: any) {
+      console.error("Email error:", error.message || error);
+      res.status(500).json({ error: "Failed to send email: " + (error.message || "Unknown error") });
     }
   });
 
