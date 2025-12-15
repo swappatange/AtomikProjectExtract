@@ -1,88 +1,67 @@
-import { AlertTriangle, Clock, IndianRupee, Frown, Search, Calendar, CreditCard, ChevronRight } from "lucide-react";
 import farmerImage from "@/assets/images/farmer.png";
 import pilotImage from "@/assets/images/drone-operator.png";
 
-const farmerProblems = [
-  { icon: Clock, text: "Slow & inefficient manual spraying" },
-  { icon: IndianRupee, text: "High labor costs" },
-  { icon: AlertTriangle, text: "Uneven chemical distribution" },
-  { icon: Frown, text: "Exposure to harmful chemicals" },
-  { icon: Search, text: "Difficulty finding certified drone pilots" },
+const farmerChallenges = [
+  { title: "Lack of Access", description: "Difficulty finding certified drone service providers in their region" },
+  { title: "High Costs", description: "Manual spraying increases labor expenses and time requirements" },
+  { title: "Inefficiency", description: "Uneven chemical application and direct health risks from exposure" },
+  { title: "Trust Deficit", description: "No standardized pricing or quality assurance mechanisms" },
+  { title: "Timing Issues", description: "Unavailable spray services during critical periods like pest outbreaks" },
 ];
 
-const pilotProblems = [
-  { icon: AlertTriangle, text: "Idle drones & no discovery platform" },
-  { icon: Calendar, text: "Unpredictable workload" },
-  { icon: CreditCard, text: "Manual scheduling & payment issues" },
+const pilotChallenges = [
+  { title: "Underutilized Assets", description: "Drones sit idle due to inconsistent booking patterns" },
+  { title: "Limited Visibility", description: "No structured platform for operators to be discovered by farmers" },
+  { title: "Fragmented Operations", description: "Payment collection and scheduling create operational bottlenecks" },
+  { title: "Market Fragmentation", description: "Lack of coordinated ecosystem for sustainable business growth" },
 ];
 
 export function ProblemSection() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-foreground text-background">
       <div className="container">
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-            The Challenge
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Farming is still powered by{" "}
-            <span className="text-primary">outdated manual processes</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Problem Statement:{" "}
+            <span className="text-primary">Bridging the Technology Gap</span>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
-            <div 
-              className="h-64 bg-cover bg-center"
-              style={{ backgroundImage: `url(${farmerImage})` }}
-            />
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center">
-                  <AlertTriangle className="w-6 h-6 text-destructive" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">Farmers face:</h3>
-              </div>
-              <ul className="space-y-3">
-                {farmerProblems.map((problem) => (
-                  <li
-                    key={problem.text}
-                    className="group flex items-center gap-4 p-3 rounded-xl bg-destructive/5 hover:bg-destructive/10 cursor-pointer transition-all duration-200"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-destructive/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
-                      <problem.icon className="w-5 h-5 text-destructive" />
-                    </div>
-                    <span className="flex-1 text-foreground font-medium">{problem.text}</span>
-                    <ChevronRight className="w-4 h-4 text-destructive opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+        <div className="space-y-16">
+          <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+            <div className="w-full md:w-2/5">
+              <div 
+                className="h-64 md:h-80 rounded-xl bg-cover bg-center"
+                style={{ backgroundImage: `url(${farmerImage})` }}
+              />
+            </div>
+            <div className="w-full md:w-3/5">
+              <h3 className="text-2xl font-bold text-primary mb-6">Farmer Challenges</h3>
+              <ul className="space-y-4">
+                {farmerChallenges.map((challenge) => (
+                  <li key={challenge.title} className="text-background/90">
+                    <span className="font-bold text-background">{challenge.title}:</span>{" "}
+                    {challenge.description}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
-            <div 
-              className="h-64 bg-cover"
-              style={{ backgroundImage: `url(${pilotImage})`, backgroundPosition: 'center 20%' }}
-            />
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
-                  <AlertTriangle className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">Drone operators face:</h3>
-              </div>
-              <ul className="space-y-3">
-                {pilotProblems.map((problem) => (
-                  <li
-                    key={problem.text}
-                    className="group flex items-center gap-4 p-3 rounded-xl bg-secondary/5 hover:bg-secondary/10 cursor-pointer transition-all duration-200"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
-                      <problem.icon className="w-5 h-5 text-secondary" />
-                    </div>
-                    <span className="flex-1 text-foreground font-medium">{problem.text}</span>
-                    <ChevronRight className="w-4 h-4 text-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+          <div className="flex flex-col md:flex-row-reverse gap-8 lg:gap-12 items-center">
+            <div className="w-full md:w-2/5">
+              <div 
+                className="h-64 md:h-80 rounded-xl bg-cover bg-center"
+                style={{ backgroundImage: `url(${pilotImage})` }}
+              />
+            </div>
+            <div className="w-full md:w-3/5">
+              <h3 className="text-2xl font-bold text-primary mb-6">Drone Operator Challenges</h3>
+              <ul className="space-y-4">
+                {pilotChallenges.map((challenge) => (
+                  <li key={challenge.title} className="text-background/90">
+                    <span className="font-bold text-background">{challenge.title}:</span>{" "}
+                    {challenge.description}
                   </li>
                 ))}
               </ul>
