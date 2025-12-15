@@ -1,6 +1,7 @@
 import { MapPin, Banknote, AlertTriangle, ShieldX, Clock, Battery, Eye, Settings, TrendingDown } from "lucide-react";
 import farmerImage from "@/assets/images/farmer.png";
 import pilotImage from "@/assets/images/drone-operator.png";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 
 const farmerChallenges = [
   { icon: MapPin, title: "Lack of Access", description: "Finding certified drone service providers in their region" },
@@ -19,8 +20,9 @@ const pilotChallenges = [
 
 export function ProblemSection() {
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container">
+    <section className="py-20 bg-muted/30 relative overflow-hidden">
+      <GeometricShapes position="bottom-left" size="lg" opacity={0.1} />
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">
             The Challenge

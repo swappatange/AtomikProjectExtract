@@ -1,4 +1,5 @@
 import { Zap, Target, ShieldCheck, Droplets, Database } from "lucide-react";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 
 const features = [
   {
@@ -30,8 +31,10 @@ const features = [
 
 export function StatsSection() {
   return (
-    <section className="py-20 bg-[#e8f5f0]">
-      <div className="container">
+    <section className="py-20 bg-[#e8f5f0] relative overflow-hidden">
+      <GeometricShapes position="bottom-right" size="lg" opacity={0.12} />
+      <GeometricShapes position="top-left" size="md" opacity={0.08} flip />
+      <div className="container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.slice(0, 3).map((feature) => (
             <FeatureCard key={feature.title} feature={feature} />

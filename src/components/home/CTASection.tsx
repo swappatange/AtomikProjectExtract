@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ctaBackground from "@/assets/images/cta-background.jpg";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 
 export function CTASection() {
   return (
@@ -11,6 +12,8 @@ export function CTASection() {
         style={{ backgroundImage: `url(${ctaBackground})` }}
       />
       <div className="absolute inset-0 bg-primary/85" />
+      <GeometricShapes position="bottom-right" size="lg" opacity={0.15} />
+      <GeometricShapes position="top-left" size="md" opacity={0.1} flip />
       
       <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto">
