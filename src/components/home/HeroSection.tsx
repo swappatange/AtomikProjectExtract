@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/images/hero-background.png";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 
 export function HeroSection() {
   return (
@@ -11,6 +12,8 @@ export function HeroSection() {
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/75 to-transparent" />
+      <GeometricShapes position="bottom-right" size="lg" opacity={0.12} />
+      <GeometricShapes position="top-left" size="md" opacity={0.08} flip />
 
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto lg:mx-0">

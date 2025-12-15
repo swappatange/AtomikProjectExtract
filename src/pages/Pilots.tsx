@@ -75,8 +75,10 @@ export default function Pilots() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 gradient-hero">
-        <div className="container">
+      <section className="py-24 gradient-hero relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.1} />
+        <GeometricShapes position="top-left" size="md" opacity={0.07} flip />
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
