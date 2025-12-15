@@ -13,7 +13,7 @@ const farmerChallenges = [
 const pilotChallenges = [
   { icon: Battery, title: "Underutilized Assets", description: "Drones sit idle due to inconsistent bookings" },
   { icon: Eye, title: "Limited Visibility", description: "No platform to be discovered by farmers" },
-  { icon: Settings, title: "Fragmented Operations", description: "Payment and scheduling bottlenecks" },
+  { icon: Settings, title: "Operational Silos", description: "Payment friction and scheduling delays" },
   { icon: TrendingDown, title: "Market Fragmentation", description: "No ecosystem for sustainable growth" },
 ];
 
