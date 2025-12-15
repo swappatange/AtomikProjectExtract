@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 import { Mail, Phone, MapPin, Send, Linkedin, Loader2 } from "lucide-react";
 
 export default function Contact() {
@@ -84,8 +85,9 @@ export default function Contact() {
       </section>
 
       {/* Contact Info + Form */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.07} />
+        <div className="container relative z-10">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <motion.div

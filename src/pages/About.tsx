@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Target, Lightbulb, Users, Linkedin } from "lucide-react";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 
 export default function About() {
   const ref = useRef(null);
@@ -33,8 +34,9 @@ export default function About() {
       </section>
 
       {/* Vision & Mission */}
-      <section ref={ref} className="py-24 bg-background">
-        <div className="container">
+      <section ref={ref} className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.08} />
+        <div className="container relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -70,8 +72,9 @@ export default function About() {
       </section>
 
       {/* Our Story */}
-      <section className="py-24 bg-muted">
-        <div className="container">
+      <section className="py-24 bg-muted relative overflow-hidden">
+        <GeometricShapes position="bottom-left" size="md" opacity={0.1} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -132,8 +135,9 @@ export default function About() {
       </section>
 
       {/* Leadership */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="top-right" size="md" opacity={0.06} />
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

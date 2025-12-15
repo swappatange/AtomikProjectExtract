@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 import {
   Smartphone,
   Package,
@@ -77,8 +78,9 @@ export default function Solutions() {
       </section>
 
       {/* Pillar 1 */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.08} />
+        <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -132,8 +134,9 @@ export default function Solutions() {
       </section>
 
       {/* Pillar 2 */}
-      <section className="py-24 bg-muted">
-        <div className="container">
+      <section className="py-24 bg-muted relative overflow-hidden">
+        <GeometricShapes position="top-left" size="md" opacity={0.07} flip />
+        <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -184,8 +187,9 @@ export default function Solutions() {
       </section>
 
       {/* Pillar 3 */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.08} />
+        <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -258,8 +262,9 @@ export default function Solutions() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 gradient-hero">
-        <div className="container">
+      <section className="py-24 gradient-hero relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.1} />
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

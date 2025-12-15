@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { GeometricShapes } from "@/components/ui/GeometricShapes";
 import {
   Calendar,
   CreditCard,
@@ -96,8 +97,9 @@ export default function Pilots() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="lg" opacity={0.08} />
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -134,8 +136,9 @@ export default function Pilots() {
       </section>
 
       {/* Requirements & How It Works */}
-      <section className="py-24 bg-muted">
-        <div className="container">
+      <section className="py-24 bg-muted relative overflow-hidden">
+        <GeometricShapes position="top-left" size="md" opacity={0.07} flip />
+        <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Requirements */}
             <motion.div
@@ -186,8 +189,9 @@ export default function Pilots() {
       </section>
 
       {/* Application Form */}
-      <section className="py-24 bg-background">
-        <div className="container">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <GeometricShapes position="bottom-right" size="md" opacity={0.06} />
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
