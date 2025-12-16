@@ -320,7 +320,7 @@ export default function Pilots() {
                   accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
                   onChange={(e) => setCertificateFile(e.target.files?.[0] || null)}
                   required
-                  className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer h-11 file:-ml-1 file:my-0.5"
+                  className="h-11 items-center cursor-pointer file:mr-4 file:px-4 file:py-2 file:rounded-md file:border-0 file:bg-primary/10 file:text-sm file:font-semibold file:text-primary hover:file:bg-primary/20"
                 />
                 <p className="text-xs text-muted-foreground">
                   Upload your Remote Pilot Certificate (Image, PDF, or Word document, max 10MB)
