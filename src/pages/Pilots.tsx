@@ -55,6 +55,7 @@ export default function Pilots() {
     droneDetails: "",
     experience: "",
   });
+  const [certificateFile, setCertificateFile] = useState<File | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -63,10 +64,21 @@ export default function Pilots() {
     setIsSubmitting(true);
 
     try {
+      const submitData = new FormData();
+      submitData.append("name", formData.name);
+      submitData.append("phone", formData.phone);
+      submitData.append("email", formData.email);
+      submitData.append("location", formData.location);
+      submitData.append("licenseNumber", formData.licenseNumber);
+      submitData.append("droneDetails", formData.droneDetails);
+      submitData.append("experience", formData.experience);
+      if (certificateFile) {
+        submitData.append("certificate", certificateFile);
+      }
+
       const response = await fetch("/api/pilot-application", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: submitData,
       });
 
       if (response.ok) {
@@ -83,6 +95,7 @@ export default function Pilots() {
           droneDetails: "",
           experience: "",
         });
+        setCertificateFile(null);
       } else {
         toast({
           title: "Error",
@@ -297,6 +310,22 @@ export default function Pilots() {
                   required
                   placeholder="DGCA License Number"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="certificate">Remote Pilot Certificate</Label>
+                <div className="flex items-center gap-4">
+                  <Input
+                    id="certificate"
+                    type="file"
+                    accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
+                    onChange={(e) => setCertificateFile(e.target.files?.[0] || null)}
+                    className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Upload your Remote Pilot Certificate (Image, PDF, or Word document, max 10MB)
+                </p>
               </div>
 
               <div className="space-y-2">

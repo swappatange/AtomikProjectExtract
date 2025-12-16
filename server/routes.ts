@@ -2,6 +2,20 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import nodemailer from "nodemailer";
+import multer from "multer";
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only images, PDF, and Word documents are allowed.'));
+    }
+  }
+});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -17,11 +31,12 @@ export async function registerRoutes(
     res.status(200).send("OK");
   });
 
-  app.post("/api/pilot-application", async (req, res) => {
+  app.post("/api/pilot-application", upload.single('certificate'), async (req, res) => {
     try {
       const { name, phone, email, location, licenseNumber, droneDetails, experience } = req.body;
+      const file = req.file;
 
-      console.log("Pilot application received:", { name, email, location });
+      console.log("Pilot application received:", { name, email, location, hasFile: !!file });
 
       if (!name || !phone || !email || !location || !licenseNumber || !droneDetails) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -40,7 +55,7 @@ export async function registerRoutes(
         },
       });
 
-      const mailOptions = {
+      const mailOptions: any = {
         from: `"Atomik Pilot Application" <${process.env.SMTP_USER}>`,
         to: "swapnil@atomik.in",
         replyTo: email,
@@ -58,8 +73,18 @@ export async function registerRoutes(
           <hr />
           <p><strong>Experience:</strong></p>
           <p>${experience ? experience.replace(/\n/g, "<br>") : "Not provided"}</p>
+          <hr />
+          <p><strong>Remote Pilot Certificate:</strong> ${file ? "Attached" : "Not provided"}</p>
         `,
       };
+
+      if (file) {
+        mailOptions.attachments = [{
+          filename: file.originalname,
+          content: file.buffer,
+          contentType: file.mimetype,
+        }];
+      }
 
       console.log("Sending pilot application email...");
       const info = await transporter.sendMail(mailOptions);
