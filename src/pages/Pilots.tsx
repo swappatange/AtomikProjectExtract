@@ -313,13 +313,14 @@ export default function Pilots() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="certificate">Remote Pilot Certificate</Label>
+                <Label htmlFor="certificate">Remote Pilot Certificate *</Label>
                 <div className="flex items-center gap-4">
                   <Input
                     id="certificate"
                     type="file"
                     accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
                     onChange={(e) => setCertificateFile(e.target.files?.[0] || null)}
+                    required
                     className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
                   />
                 </div>
