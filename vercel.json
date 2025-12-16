@@ -4,8 +4,12 @@
   "framework": "vite",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/contact",
+      "dest": "/api/contact"
+    },
+    {
+      "src": "/api/pilot-application",
+      "dest": "/api/pilot-application"
     },
     {
       "src": "/assets/(.*)",

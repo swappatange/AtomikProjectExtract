@@ -19,6 +19,7 @@ import {
   Building,
   CheckCircle2,
   ArrowRight,
+  Loader2,
 } from "lucide-react";
 
 const benefits = [
@@ -55,21 +56,49 @@ export default function Pilots() {
     experience: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Application Submitted!",
-      description: "We'll review your application and get back to you within 48 hours.",
-    });
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      location: "",
-      licenseNumber: "",
-      droneDetails: "",
-      experience: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/pilot-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Application Submitted!",
+          description: "We'll review your application and get back to you within 48 hours.",
+        });
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          location: "",
+          licenseNumber: "",
+          droneDetails: "",
+          experience: "",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to submit application. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit application. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -293,9 +322,9 @@ export default function Pilots() {
                 />
               </div>
 
-              <Button type="submit" size="xl" className="w-full">
-                <CheckCircle2 className="w-5 h-5" />
-                Submit Application
+              <Button type="submit" size="xl" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <CheckCircle2 className="w-5 h-5" />}
+                {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
             </form>
           </motion.div>
