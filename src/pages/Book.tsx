@@ -48,22 +48,54 @@ export default function Book() {
     notes: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Booking Request Submitted!",
-      description: "We'll confirm your booking slot within 24 hours.",
-    });
-    setFormData({
-      name: "",
-      phone: "",
-      location: "",
-      cropType: "",
-      acreage: "",
-      preferredDate: "",
-      preferredTime: "",
-      notes: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Booking Request Submitted!",
+          description: "We'll confirm your booking slot within 24 hours.",
+        });
+        setFormData({
+          name: "",
+          phone: "",
+          location: "",
+          cropType: "",
+          acreage: "",
+          preferredDate: "",
+          preferredTime: "",
+          notes: "",
+        });
+      } else {
+        toast({
+          title: "Submission Failed",
+          description: data.error || "Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Network error. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -262,9 +294,9 @@ export default function Book() {
                 />
               </div>
 
-              <Button type="submit" size="xl" className="w-full">
+              <Button type="submit" size="xl" className="w-full" disabled={isSubmitting}>
                 <Calendar className="w-5 h-5" />
-                Book Now
+                {isSubmitting ? "Submitting..." : "Book Now"}
               </Button>
 
               <p className="text-center text-sm text-muted-foreground">
