@@ -8,6 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { GeometricShapes } from "@/components/ui/GeometricShapes";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   MapPin,
   Leaf,
   Calendar,
@@ -34,6 +41,19 @@ const benefits = [
   { icon: Shield, text: "Safety for farmers" },
   { icon: Clock, text: "Timely operations" },
   { icon: BadgeCheck, text: "Verified pilot guarantee" },
+];
+
+const cropTypes = [
+  { category: "Cereals & Millets", crops: ["Paddy / Rice", "Wheat", "Maize / Corn", "Bajra / Pearl Millet", "Jowar / Sorghum", "Ragi / Finger Millet", "Barley"] },
+  { category: "Pulses", crops: ["Chickpea / Chana", "Pigeon Pea / Tur Dal", "Black Gram / Urad", "Green Gram / Moong", "Lentil / Masoor", "Kidney Bean / Rajma"] },
+  { category: "Oilseeds", crops: ["Soybean", "Groundnut / Peanut", "Mustard / Sarson", "Sunflower", "Sesame / Til", "Castor", "Safflower"] },
+  { category: "Cash Crops", crops: ["Cotton", "Sugarcane", "Jute", "Tobacco"] },
+  { category: "Vegetables", crops: ["Tomato", "Potato", "Onion", "Brinjal / Eggplant", "Cabbage", "Cauliflower", "Chilli / Pepper", "Okra / Bhindi", "Bottle Gourd", "Bitter Gourd", "Cucumber", "Pumpkin", "Carrot", "Peas"] },
+  { category: "Fruits", crops: ["Mango", "Banana", "Papaya", "Grapes", "Pomegranate", "Guava", "Orange / Citrus", "Apple", "Watermelon", "Muskmelon"] },
+  { category: "Spices & Condiments", crops: ["Turmeric", "Ginger", "Garlic", "Coriander", "Cumin", "Fenugreek", "Black Pepper", "Cardamom"] },
+  { category: "Plantation Crops", crops: ["Tea", "Coffee", "Coconut", "Arecanut", "Rubber", "Oil Palm"] },
+  { category: "Fibre Crops", crops: ["Hemp", "Flax"] },
+  { category: "Other", crops: ["Other (specify in notes)"] },
 ];
 
 export default function Book() {
@@ -238,13 +258,29 @@ export default function Book() {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="cropType">Crop Type *</Label>
-                  <Input
-                    id="cropType"
+                  <Select
                     value={formData.cropType}
-                    onChange={(e) => setFormData({ ...formData, cropType: e.target.value })}
+                    onValueChange={(value) => setFormData({ ...formData, cropType: value })}
                     required
-                    placeholder="e.g., Cotton, Paddy, Sugarcane"
-                  />
+                  >
+                    <SelectTrigger id="cropType">
+                      <SelectValue placeholder="Select your crop" />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-80">
+                      {cropTypes.map((group) => (
+                        <div key={group.category}>
+                          <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-muted">
+                            {group.category}
+                          </div>
+                          {group.crops.map((crop) => (
+                            <SelectItem key={crop} value={crop}>
+                              {crop}
+                            </SelectItem>
+                          ))}
+                        </div>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="acreage">Acreage *</Label>
