@@ -138,7 +138,15 @@ export default function Book() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      let data;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.error("Non-JSON response received:", text);
+        throw new Error(`Server returned non-JSON response (${response.status}). Please check server logs.`);
+      }
 
       if (response.ok) {
         toast({
@@ -162,9 +170,11 @@ export default function Book() {
       console.error("Booking submission error:", error);
       toast({
         title: "Submission Failed",
-        description: error.message === "Failed to fetch" 
-          ? "Network error: Could not reach the server. Please check your internet connection."
-          : error.message || "Something went wrong. Please try again later.",
+        description: error.message.includes("Unexpected end of JSON input") || error.message.includes("json")
+          ? "Server error: The server returned an invalid response. This often happens if the backend is not running correctly in the published app."
+          : error.message === "Failed to fetch" 
+            ? "Network error: Could not reach the server. Please check your internet connection."
+            : error.message || "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     } finally {
