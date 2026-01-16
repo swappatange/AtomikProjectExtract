@@ -134,9 +134,13 @@ export default function Book() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify(formData),
       });
+
+      console.log("Response status:", response.status);
+      console.log("Response headers:", Object.fromEntries(response.headers.entries()));
 
       let data;
       const contentType = response.headers.get("content-type");
@@ -145,7 +149,7 @@ export default function Book() {
       } else {
         const text = await response.text();
         console.error("Non-JSON response received:", text);
-        throw new Error(`Server returned non-JSON response (${response.status}). Please check server logs.`);
+        throw new Error(`Server returned non-JSON response (${response.status}). This often happens if the backend is not running correctly or returned a proxy error page. Full response: ${text.substring(0, 100)}...`);
       }
 
       if (response.ok) {
