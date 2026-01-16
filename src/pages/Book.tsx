@@ -156,16 +156,15 @@ export default function Book() {
           notes: "",
         });
       } else {
-        toast({
-          title: "Submission Failed",
-          description: data.error || "Please try again later.",
-          variant: "destructive",
-        });
+        throw new Error(data.error || data.details || "Failed to submit booking");
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Booking submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "Network error. Please try again later.",
+        description: error.message === "Failed to fetch" 
+          ? "Network error: Could not reach the server. Please check your internet connection."
+          : error.message || "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     } finally {

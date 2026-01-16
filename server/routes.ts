@@ -139,13 +139,21 @@ export async function registerRoutes(
         `,
       };
 
-      console.log("Sending booking email...");
+      console.log("Sending booking email to swapnil@atomik.in...");
       const info = await transporter.sendMail(mailOptions);
       console.log("Email sent successfully:", info.messageId);
       res.json({ success: true, message: "Booking request submitted successfully" });
     } catch (error: any) {
-      console.error("Email error:", error.message || error);
-      res.status(500).json({ error: "Failed to submit booking: " + (error.message || "Unknown error") });
+      console.error("Booking submission error details:", {
+        message: error.message,
+        code: error.code,
+        command: error.command,
+        stack: error.stack
+      });
+      res.status(500).json({ 
+        error: "Failed to submit booking",
+        details: error.message || "Unknown error"
+      });
     }
   });
 
