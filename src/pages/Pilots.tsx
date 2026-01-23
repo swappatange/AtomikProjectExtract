@@ -56,6 +56,7 @@ export default function Pilots() {
     experience: "",
   });
   const [certificateFile, setCertificateFile] = useState<File | null>(null);
+  const [insuranceFile, setInsuranceFile] = useState<File | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -74,6 +75,9 @@ export default function Pilots() {
       submitData.append("experience", formData.experience);
       if (certificateFile) {
         submitData.append("certificate", certificateFile);
+      }
+      if (insuranceFile) {
+        submitData.append("insurance", insuranceFile);
       }
 
       const response = await fetch("/api/pilot-application", {
@@ -96,6 +100,7 @@ export default function Pilots() {
           experience: "",
         });
         setCertificateFile(null);
+        setInsuranceFile(null);
       } else {
         toast({
           title: "Error",
@@ -321,6 +326,21 @@ export default function Pilots() {
                 />
                 <p className="text-xs text-muted-foreground">
                   Upload your Remote Pilot Certificate (Image, PDF, or Word document, max 10MB)
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="insurance">Drone Insurance Document *</Label>
+                <Input
+                  id="insurance"
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
+                  onChange={(e) => setInsuranceFile(e.target.files?.[0] || null)}
+                  required
+                  className="h-11 items-center cursor-pointer file:mr-4 file:px-4 file:py-2 file:rounded-md file:border-0 file:bg-primary/10 file:text-sm file:font-semibold file:text-primary hover:file:bg-primary/20"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Upload your Drone Insurance Document (Image, PDF, or Word document, max 10MB)
                 </p>
               </div>
 

@@ -31,12 +31,17 @@ export async function registerRoutes(
     res.status(200).send("OK");
   });
 
-  app.post("/api/pilot-application", upload.single('certificate'), async (req, res) => {
+  app.post("/api/pilot-application", upload.fields([
+    { name: 'certificate', maxCount: 1 },
+    { name: 'insurance', maxCount: 1 }
+  ]), async (req, res) => {
     try {
       const { name, phone, email, location, licenseNumber, droneDetails, experience } = req.body;
-      const file = req.file;
+      const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+      const certificate = files['certificate']?.[0];
+      const insurance = files['insurance']?.[0];
 
-      console.log("Pilot application received:", { name, email, location, hasFile: !!file });
+      console.log("Pilot application received:", { name, email, location, hasCertificate: !!certificate, hasInsurance: !!insurance });
 
       if (!name || !phone || !email || !location || !licenseNumber || !droneDetails) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -74,16 +79,29 @@ export async function registerRoutes(
           <p><strong>Experience:</strong></p>
           <p>${experience ? experience.replace(/\n/g, "<br>") : "Not provided"}</p>
           <hr />
-          <p><strong>Remote Pilot Certificate:</strong> ${file ? "Attached" : "Not provided"}</p>
+          <p><strong>Remote Pilot Certificate:</strong> ${certificate ? "Attached" : "Not provided"}</p>
+          <p><strong>Drone Insurance Document:</strong> ${insurance ? "Attached" : "Not provided"}</p>
         `,
       };
 
-      if (file) {
-        mailOptions.attachments = [{
-          filename: file.originalname,
-          content: file.buffer,
-          contentType: file.mimetype,
-        }];
+      const attachments: any[] = [];
+      if (certificate) {
+        attachments.push({
+          filename: certificate.originalname,
+          content: certificate.buffer,
+          contentType: certificate.mimetype,
+        });
+      }
+      if (insurance) {
+        attachments.push({
+          filename: insurance.originalname,
+          content: insurance.buffer,
+          contentType: insurance.mimetype,
+        });
+      }
+      
+      if (attachments.length > 0) {
+        mailOptions.attachments = attachments;
       }
 
       console.log("Sending pilot application email...");
