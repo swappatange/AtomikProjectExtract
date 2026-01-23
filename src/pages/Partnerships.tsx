@@ -17,6 +17,9 @@ import {
   GraduationCap,
   Lightbulb,
   MapPin,
+  Zap,
+  BarChart,
+  Settings,
 } from "lucide-react";
 
 const whyPartner = [
@@ -29,9 +32,9 @@ const whyPartner = [
 ];
 
 const corporateSolutions = [
-  "Contracted drone spraying",
-  "Crop health analytics",
-  "Custom agronomy solutions",
+  { icon: Zap, text: "Contracted drone spraying" },
+  { icon: BarChart, text: "Crop health analytics" },
+  { icon: Settings, text: "Custom agronomy solutions" },
 ];
 
 const governmentSupport = [
@@ -131,11 +134,11 @@ export default function Partnerships() {
               </p>
               <ul className="space-y-4 mb-8">
                 {corporateSolutions.map((solution) => (
-                  <li key={solution} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center">
-                      <span className="w-2 h-2 rounded-full bg-secondary" />
+                  <li key={solution.text} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                      <solution.icon className="w-4 h-4 text-secondary" />
                     </div>
-                    <span className="text-muted-foreground">{solution}</span>
+                    <span className="text-muted-foreground">{solution.text}</span>
                   </li>
                 ))}
               </ul>
