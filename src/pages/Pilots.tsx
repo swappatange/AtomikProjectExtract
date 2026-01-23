@@ -221,9 +221,6 @@ export default function Pilots() {
                       {index + 1}
                     </div>
                     <span className="text-muted-foreground">{step}</span>
-                    {index < howItWorks.length - 1 && (
-                      <ArrowRight className="w-4 h-4 text-muted-foreground/50 ml-auto hidden sm:block" />
-                    )}
                   </li>
                 ))}
               </ul>
